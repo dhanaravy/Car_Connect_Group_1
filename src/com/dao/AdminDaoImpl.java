@@ -130,13 +130,14 @@ Connection conn = DBUtil.getDbConn();
 			int reservationId = rst.getInt("id");
 			int customerId= rst.getInt("customer_id");
 			int vehicleId = rst.getInt("vehicle_id");
-		    Date StartDate = rst.getDate("start_date");
-			Date EndDate = rst.getDate("end_date");
-			int totalCost = rst.getInt("total_cost");
+		    LocalDate StartDate = rst.getDate("start_date").toLocalDate();
+			LocalDate EndDate = rst.getDate("end_date").toLocalDate();;
+			double totalCost = rst.getDouble("total_cost");
 			String status = rst.getString("status");
 			Reservation a= new Reservation(reservationId,customerId,vehicleId,StartDate,EndDate,totalCost,status);
 		    list.add(a);
-        }
+		}
+		
         
         DBUtil.DBClose();  
     

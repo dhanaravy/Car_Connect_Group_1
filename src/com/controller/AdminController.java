@@ -121,7 +121,7 @@ public class AdminController {
 
 			    for (Reservation r : reservations) {
 			        System.out.println(String.format("%-10d%-15d%-15d%-15s%-15s%-15s%-15s", 
-			                r.getReservationId(), r.getCustomerId(), r.getVehicleId(), 
+			                r.getId(), r.getCustomerId(), r.getVehicleId(), 
 			                r.getStartDate().toString(), r.getEndDate().toString(), 
 			                r.getTotalCost(), r.getStatus()));
 			    }
