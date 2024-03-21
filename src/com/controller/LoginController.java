@@ -2,6 +2,7 @@ package com.controller;
 import java.sql.SQLException;
 import java.util.*;
 
+import com.exception.AdminNotFoundException;
 import com.exception.DatabaseConnectionException;
 import com.exception.InvalidCredentialsException;
 import com.exception.InvalidInputException;
@@ -120,7 +121,7 @@ public class LoginController {
 					}
 					else
 						throw new InvalidCredentialsException("Invalid Credentials!");
-				} catch (SQLException | DatabaseConnectionException | InvalidCredentialsException e) {
+				} catch (SQLException | DatabaseConnectionException | InvalidCredentialsException | InvalidInputException | AdminNotFoundException e) {
 					System.out.println(e.getMessage());
 				}
 				break;
