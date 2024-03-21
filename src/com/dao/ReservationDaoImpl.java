@@ -29,10 +29,9 @@ public class ReservationDaoImpl implements ReservationDao {
 
 		while (rst.next()) {
 			int id = rst.getInt("id");
-			;
+			
 			int customerId = rst.getInt("customer_id");
 			int vehicleId = rst.getInt("vehicle_id");
-			;
 			LocalDate startDate = rst.getDate("start_date").toLocalDate();
 			LocalDate endDate = rst.getDate("end_date").toLocalDate();
 			double totalCost=rst.getDouble("total_cost");
@@ -105,7 +104,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			/*Customer c = new Customer(id, firstName, lastName, email, phoneNumber, address, username, password,
 					registrationDate);*/
 			
-			Customer c = new Customer(  firstName,   lastName,   email,  phoneNumber,   address,   username,
+			Customer c = new Customer( id, firstName,   lastName,   email,  phoneNumber,   address,   username,
 					  password,  registrationDate); 
 			list.add(c);
 		}
