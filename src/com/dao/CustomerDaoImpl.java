@@ -42,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			String username = rst.getString("username");
 			String password = rst.getString("password");
 			LocalDate registrationDate = rst.getDate("registration_date").toLocalDate();
-			Customer c = new Customer(firstName, lastName, email, phoneNumber, address, username, password,
+			Customer c = new Customer(id,firstName, lastName, email, phoneNumber, address, username, password,
 					registrationDate);
 			list.add(c);
 		}
@@ -149,7 +149,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			String username = rst.getString("username");
 			String password = rst.getString("password");
 			LocalDate registrationDate = rst.getDate("registration_date").toLocalDate();
-			Customer c = new Customer(firstName, lastName, email, phoneNumber, address, username, password,
+			Customer c = new Customer(id,firstName, lastName, email, phoneNumber, address, username, password,
 					registrationDate);
 			list.add(c);
 		}
