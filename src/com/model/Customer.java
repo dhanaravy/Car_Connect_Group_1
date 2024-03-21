@@ -12,10 +12,7 @@ public class Customer {
 	private String username;
 	private String password;
 	private LocalDate registrationDate;
-	
-	public Customer() {
 
-	}
 	
 	public Customer(String firstName, String lastName, String email,String phoneNumber, String address, String username,
 			String password, LocalDate registrationDate) {
