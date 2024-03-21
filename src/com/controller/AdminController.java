@@ -36,10 +36,10 @@ public class AdminController {
 					System.out.println("Enter  Admin Id:");
 					int id = sc.nextInt();
 					Admin a =adminService.getAdminById(list, id);
-					System.out.println(String.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%s", "Admin Id",
+					System.out.println(String.format("%-15s%-15s%-15s%-15s%-15s%-15s%-15s", "Admin Id",
 							"First Name", "Last Name", "Phone Number", "User Name", "Password","Role",
 							"JoinDate"));
-					System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s%s", a.getId(),
+					System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s", a.getId(),
 							a.getFirstName(), a.getLastName(), a.getPhoneNumber(), a.getUserName(),
 							a.getPassword(), a.getJoinDate().toString()));
 				} catch (DatabaseConnectionException | SQLException | InvalidInputException e) {
@@ -59,7 +59,7 @@ public class AdminController {
 							"JoinDate"));
 					System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s%s", a.getId(),
 							a.getFirstName(), a.getLastName(), a.getPhoneNumber(), a.getUserName(),
-							a.getPassword(), a.getJoinDate().toString()));
+							a.getPassword(),a.getRole(), a.getJoinDate().toString()));
 				} catch (SQLException | DatabaseConnectionException | InvalidInputException e) {
 					System.out.println(e.getMessage());
 					break;
@@ -80,7 +80,7 @@ public class AdminController {
 						"JoinDate"));
 				System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s%s", a.getId(),
 						a.getFirstName(), a.getLastName(), a.getPhoneNumber(), a.getUserName(),
-						a.getPassword(), a.getJoinDate().toString()));
+						a.getPassword(),a.getRole(), a.getJoinDate().toString()));
 			
 				System.out.println("What do you want to update?");
 				sc.nextLine();				
@@ -92,7 +92,7 @@ public class AdminController {
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
-			
+			break;
 		case 4:
 			System.out.println("Enter Admin Id to be deleted");
 			int id = sc.nextInt();
@@ -114,13 +114,13 @@ public class AdminController {
 			    
 			    List<Reservation> reservations = adminService.displayReservationByDate(startDate, endDate);
 			    
-			    System.out.println(String.format("%-10s%-15s%-15s%-15s%-15s%-15s%-15s%", 
+			    System.out.println(String.format("%-20s%-20s%-20s%-20s%-20s%-20s%-20s", 
 			            "Reservation Id", "Customer Id", "Vehicle Id", "Start Date", 
-			            "End Date", "Total Cost", "Status", ""));
+			            "End Date", "Total Cost", "Status"));
 
 
 			    for (Reservation r : reservations) {
-			        System.out.println(String.format("%-10d%-15d%-15d%-15s%-15s%-15s%-15s", 
+			        System.out.println(String.format("%-20d%-20d%-20d%-20s%-20s%-20f%-20s", 
 			                r.getId(), r.getCustomerId(), r.getVehicleId(), 
 			                r.getStartDate().toString(), r.getEndDate().toString(), 
 			                r.getTotalCost(), r.getStatus()));
