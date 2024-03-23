@@ -11,11 +11,12 @@ import com.dao.ReservationDao;
 import com.model.Customer;
 import com.model.Reservation;
 import com.model.Vehicle;
+import com.util.DateDifference;
 
 
 public class ReservationService {
 	ReservationDao reservationDao=new ReservationDaoImpl();
-	
+	DateDifference dateDifference=new DateDifference();
 
 	public List<Reservation> fetchAllReservation() throws SQLException, DatabaseConnectionException {
 		List<Reservation> list = reservationDao.fetchAllReservation();
@@ -88,7 +89,7 @@ public class ReservationService {
 		 String status = null;
 		 for(Vehicle v : list1) {
 				if(v.getId() == vehicleId) {
-					totalCost=10*v.getDailyRate();
+					totalCost=(dateDifference.calculateDaysDifference(startDate, endDate))*v.getDailyRate();
 					break;
 				}
 				status="completed";
@@ -97,10 +98,16 @@ public class ReservationService {
 		
 	}
 
-	 
+	public void updateVehicleAvailability(List<Vehicle> list1, int vehicleId) throws SQLException, DatabaseConnectionException {
+		int i=0;
+		for(Vehicle v: list1) {
+			if(v.getId()==vehicleId)
+				i=0;
+				reservationDao.updateVehicleAvailability(vehicleId,i);
+		}
 
 	
-
+	}
 	
 
 }	 

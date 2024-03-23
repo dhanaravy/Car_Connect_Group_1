@@ -26,7 +26,7 @@ public class ReservationController {
 			System.out.println("press 4. Update Reservation");
 			System.out.println("press 5. Cancel Reservation");
 			System.out.println("press 0. for exit");
-			System.out.println("**************************************");
+			System.out.println("*****************************************");
 			int input = sc.nextInt();
 			if (input == 0) {
 				System.out.println("Exiting...Thank you!!!");
@@ -97,19 +97,19 @@ public class ReservationController {
 					System.out.println("Vehicle not available");
 					break; 
 				}
-				System.out.println("Enter start date: ");
+				System.out.println("Enter start date in the format 'yyyy-mm-dd': ");
 				String startdate=sc.nextLine();
 				LocalDate startDate = LocalDate.parse(startdate);
-				System.out.println("Enter end date: ");
+				System.out.println("Enter end date in the format 'yyyy-mm-dd': ");
 				String enddate=sc.next();
 				LocalDate endDate = LocalDate.parse(enddate);
 				reservationService.insertRecordInReservation(list1,customerId,vehicleId,startDate,endDate);
-				System.out.println("Vehicle reserved");
+				reservationService.updateVehicleAvailability(list1,vehicleId);
+				System.out.println("Vehicle reserved Successfully");
 				}catch (DatabaseConnectionException | SQLException | InvalidInputException e) {
 					System.out.println(e.getMessage());
 				}
 					break;
-				 
 			case 4:
 				try {
 					List<Reservation> list = reservationService.fetchAllReservation();
