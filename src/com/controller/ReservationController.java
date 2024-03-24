@@ -14,8 +14,7 @@ import com.service.ReservationService;
 
 public class ReservationController {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args,Scanner sc) {
 		ReservationService reservationService=new ReservationService();
 		while (true) {
 			System.out.println();
@@ -143,8 +142,9 @@ public class ReservationController {
 					System.out.println(e.getMessage());
 				}
 			}
+			sc.close();
 		}
-		sc.close();
+		
 	}
 }
 		
