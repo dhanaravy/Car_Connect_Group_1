@@ -11,7 +11,7 @@ import com.model.*;
 import com.service.*;
 
 public class AdminController {
-	public static void main(String[] args, Scanner sc) throws InvalidInputException
+	public static void main(String[] args, Scanner sc) 
  {
 		AdminService adminService=new AdminService();
 		while(true) {
@@ -156,7 +156,7 @@ public class AdminController {
         else if(adminOption==0)
         	break;
         else {
-        	throw new InvalidInputException("Enter a Valid Option");
+        	System.out.println("Enter a Valid Option");
         }
         	
         
