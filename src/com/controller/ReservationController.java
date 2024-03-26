@@ -142,7 +142,7 @@ public class ReservationController {
 					System.out.println(e.getMessage());
 				}
 			}
-			sc.close();
+			
 		}
 		
 	}

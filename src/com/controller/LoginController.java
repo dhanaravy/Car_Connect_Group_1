@@ -2,7 +2,7 @@ package com.controller;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.exception.AdminNotFoundException;
+
 import com.exception.DatabaseConnectionException;
 import com.exception.InvalidCredentialsException;
 import com.exception.InvalidInputException;
@@ -16,6 +16,8 @@ public class LoginController {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		LoginService loginService=new LoginService();
+		AdminService adminService = new AdminService();
+		CustomerService customerService = new CustomerService();
 		while (true) {
 			System.out.println();
 			System.out.println("**********LOGIN OPERATION**********");
@@ -103,8 +105,8 @@ public class LoginController {
 				break;
 			case 3:
 				try {
-					List<Admin> adminlist = loginService.fetchAllAdmin();
-					List<Customer> customerlist = loginService.fetchAllCustomer();
+					List<Admin> adminlist = adminService.fetchAllAdmins();
+					List<Customer> customerlist = customerService.fetchAllCustomers();
 					System.out.println("Enter username:");
 					String userName=sc.next();
 					System.out.println("Enter password");
@@ -121,7 +123,7 @@ public class LoginController {
 					}
 					else
 						throw new InvalidCredentialsException("Invalid Credentials!");
-				} catch (SQLException | DatabaseConnectionException | InvalidCredentialsException | InvalidInputException | AdminNotFoundException e) {
+				} catch (SQLException | DatabaseConnectionException | InvalidCredentialsException e) {
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -140,12 +142,12 @@ public class LoginController {
 						String newPassword=sc.next();
 						if(loginDto.getRole().equals("customer"))
 						{
-							CustomerService customerService=new CustomerService();
+							
 							customerService.updateCustomer(loginDto.getId(), "password", newPassword);
 						}
 						else
 						{
-							AdminService adminService=new AdminService();
+							
 							adminService.updateAdmin(loginDto.getId(), "password", newPassword);
 						}
 					}
