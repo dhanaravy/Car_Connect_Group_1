@@ -136,9 +136,12 @@ public class ReservationController {
 				System.out.println("Enter Reservation Id to be deleted");
 				int id = sc.nextInt();
 				try {
-					reservationService.deleteReservationById(id);
+					List<Reservation> list = reservationService.fetchAllReservation();
+					boolean check=reservationService.validateReservationId(list,id);
+					if(check==true)
+						reservationService.deleteReservationById(id);	   
 					System.out.println("Records Deleted!!");
-				} catch (SQLException | DatabaseConnectionException e) {
+				} catch (SQLException | DatabaseConnectionException | ReservationException e) {
 					System.out.println(e.getMessage());
 				}
 			}

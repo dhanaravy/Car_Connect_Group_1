@@ -28,7 +28,7 @@ public class ReservationService {
 			if (r.getId() == id)
 				return r;
 		}
-		throw new ReservationException("Reservation not found :(\nRecheck the Reservation Id");
+		throw new ReservationException("Reservation not found!!! Please recheck the Reservation Id");
 	}
 
 	public Reservation getReservationByCustomerId(List<Reservation> list, int id)throws ReservationException {
@@ -36,7 +36,7 @@ public class ReservationService {
 			if (r.getCustomerId() == id)
 				return r;
 		}
-		throw new ReservationException("Reservation not found :(\nRecheck the Reservation Id");
+		throw new ReservationException("Reservation not found for the entered customer Id");
 	}
 
 	 
@@ -44,7 +44,7 @@ public class ReservationService {
 	public void updateReservation(int id, String field, String newVal) throws  ReservationException, SQLException, DatabaseConnectionException {
 		String fieldd=field.toLowerCase().replace(" ","_");
 		if(fieldd.equals("id"))
-			throw new ReservationException("Sorry!! Reservation  could not be updated :<");
+			throw new ReservationException("Reservation ID could not be updated");
 		else
 			reservationDao.updateReservation(id,fieldd,newVal);
 		}
@@ -64,7 +64,7 @@ public class ReservationService {
 			if (c.getId() == customerId)
 				return c;
 		}
-		throw new InvalidInputException("Cuustomer not found :(\nRecheck the Customer Id");
+		throw new InvalidInputException("Customer is not found!!Recheck the entered Customer Id");
 	}
 
 	public List<Vehicle> fetchAllVehicles() throws SQLException, DatabaseConnectionException {
@@ -108,7 +108,18 @@ public class ReservationService {
 
 	
 	}
-	
+
+	public boolean validateReservationId(List<Reservation> list, int id) throws ReservationException {
+	     for(Reservation r:list) {
+	    	 if(r.getId()==id)
+	    		 return true;
+	    		 
+	     }
+	    throw new ReservationException("Sorry!! Reservation id is not found to delete it");
+		
+	}
+
+	 
 
 }	 
 
