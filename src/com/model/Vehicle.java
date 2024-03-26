@@ -1,6 +1,28 @@
 package com.model;
 
+import java.util.Objects;
+
 public class Vehicle {
+	@Override
+	public int hashCode() {
+		return Objects.hash(availability, color, dailyRate, id, make, model, registrationNumber, year);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicle other = (Vehicle) obj;
+		return availability == other.availability && Objects.equals(color, other.color)
+				&& Double.doubleToLongBits(dailyRate) == Double.doubleToLongBits(other.dailyRate) && id == other.id
+				&& Objects.equals(make, other.make) && Objects.equals(model, other.model)
+				&& Objects.equals(registrationNumber, other.registrationNumber) && Objects.equals(year, other.year);
+	}
+
 	private int id;
 	private String model;
 	private String make;
