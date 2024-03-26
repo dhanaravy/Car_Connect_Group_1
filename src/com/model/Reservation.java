@@ -1,6 +1,7 @@
 package com.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
  
 
 public class Reservation {
@@ -95,6 +96,26 @@ public class Reservation {
 	public String toString() {
 		return "Reservation [id=" + id + ", customerId=" + customerId + ", vehicleId=" + vehicleId + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", totalCost=" + totalCost + ", status=" + status + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(customerId, endDate, id, startDate, status, totalCost, vehicleId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		return customerId == other.customerId && Objects.equals(endDate, other.endDate) && id == other.id
+				&& Objects.equals(startDate, other.startDate) && Objects.equals(status, other.status)
+				&& Double.doubleToLongBits(totalCost) == Double.doubleToLongBits(other.totalCost)
+				&& vehicleId == other.vehicleId;
 	}
 	
 	
