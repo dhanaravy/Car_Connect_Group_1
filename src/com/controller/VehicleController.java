@@ -168,7 +168,6 @@ public class VehicleController {
 				}
 			}
 		}
-		sc.close();
 	}
 	
 }
