@@ -80,14 +80,11 @@ public class AdminDaoImpl implements AdminDao {
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		if(fieldd.equals("join_date")) {
-			LocalDate local=LocalDate.parse(newVal);
-			java.sql.Date sqlDate = java.sql.Date.valueOf(local);
-             pstmt.setDate(1, sqlDate);
-		}
+		if(fieldd.equals("role")) {
+			String newBal=newVal;
 		
-		else 
-			pstmt.setString(1,newVal);
+             pstmt.setString(1,newVal);
+		}
 		
 		pstmt.setInt(2, id);
 
@@ -143,5 +140,6 @@ Connection conn = DBUtil.getDbConn();
     
     return list;
 }
+
 
 }

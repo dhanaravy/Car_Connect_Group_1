@@ -172,7 +172,17 @@ public class ReservationDaoImpl implements ReservationDao {
 		DBUtil.DBClose();
 	}
 
-
+	@Override
+	public void updateVehicleAvailability(int vehicleId, int newVal) throws SQLException, DatabaseConnectionException {
+		Connection conn=DBUtil.getDbConn();
+		String sql="update vehicle SET availability=? where id=?";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1,newVal);
+		pstmt.setInt(2,vehicleId);
+		pstmt.executeUpdate();
+		DBUtil.DBClose();
+		
+	}
 
 	
 

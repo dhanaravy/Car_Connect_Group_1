@@ -22,7 +22,7 @@ public class CustomerController {
 			System.out.println("press 4. Update Customer");
 			System.out.println("press 5. Delete Customer");
 			System.out.println("press 0. for exit");
-			System.out.println("**************************************");
+			System.out.println("******************************4********");
 			int input = sc.nextInt();
 			if (input == 0) {
 				System.out.println("Exiting...Thank you!!!");

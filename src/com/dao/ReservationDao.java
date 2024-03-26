@@ -23,6 +23,8 @@ public interface ReservationDao {
 
 	void insertRecordInReservation(int customerId, int vehicleId, LocalDate startDate, LocalDate endDate, double totalCost,
 			String status) throws SQLException, DatabaseConnectionException;
+	
+	void updateVehicleAvailability(int vehicleId, int i) throws SQLException, DatabaseConnectionException;
 
 
 

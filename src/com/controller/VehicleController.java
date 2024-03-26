@@ -11,8 +11,7 @@ import com.model.Vehicle;
 import com.service.VehicleService;
 
 public class VehicleController {
-	public static void main(String[] args){
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args,Scanner sc){
 		VehicleService vehicleService = new VehicleService();
 		while (true) {
 			System.out.println();
