@@ -55,23 +55,25 @@ public class LoginTest {
 			Assert.assertEquals(true, loginService.checkCustomerUsername(list, username));
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (DatabaseConnectionException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
 	}
-	public void loginCheck() {
+	public void loginCheck() throws SQLException, DatabaseConnectionException {
 		List<Customer> list;
 		
+		list=loginService.fetchAllCustomer();
+		List<Admin> list1;
+		list1 = loginService.fetchAllAdmin();
 		
-		
-		String firstname=sc.nextLine();
-		String lastname=sc.nextLine();
-		String username=sc.nextLine();
-		String password=sc.nextLine();
+		String firstname="ram";
+		String lastname="prasad";
+		String username="ramprasad";
+		String password="ram123";
 	}
 
 }
