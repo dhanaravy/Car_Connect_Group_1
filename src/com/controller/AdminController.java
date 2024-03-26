@@ -11,25 +11,46 @@ import com.model.*;
 import com.service.*;
 
 public class AdminController {
-	public static void main(String[] args) throws DatabaseConnectionException, InvalidInputException, AdminNotFoundException {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args, Scanner sc) throws InvalidInputException
+ {
 		AdminService adminService=new AdminService();
+		while(true) {
+		
+		System.out.println("Select an option:");
+        System.out.println("1. Manage Reservations");
+        System.out.println("2. Manage Vehicles");
+        System.out.println("3. Manage Customer");
+        System.out.println("4. Manage Admin");
+		System.out.println("0. Go to Login Page");
+        int adminOption = sc.nextInt();
+        
+        if (adminOption == 1) {
+            ReservationController.main(args,sc);
+        } else if (adminOption == 2) {
+            VehicleController.main(args,sc);
+        } 
+        else if (adminOption == 3) {
+            CustomerController.main(args);
+        } 
+        
+        else if (adminOption == 4) {
 		while (true) {
 			System.out.println();
-			System.out.println("**********ADMIN OPERATION**********");
+			System.out.println("***ADMIN OPERATION***");
 			System.out.println("press 1. Get Admin By Id");
 			System.out.println("press 2. Get Admin By Username");
 			System.out.println("press 3. Update Admin");
 			System.out.println("press 4. Delete Admin");
 			System.out.println("Press 5. Display All Reservation By Date Range");
 			System.out.println("press 0. for exit");
-			System.out.println("**************************************");
+			System.out.println("**************");
 			int input = sc.nextInt();
 			if (input == 0) {
 				System.out.println("Exiting...Thank you!!!");
 				break;
 			}
 			switch (input) {
+			
 			case 1:
 				try {
 					List<Admin> list = adminService.fetchAllAdmins();
@@ -42,7 +63,7 @@ public class AdminController {
 					System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s", a.getId(),
 							a.getFirstName(), a.getLastName(), a.getPhoneNumber(), a.getUserName(),
 							a.getPassword(), a.getJoinDate().toString()));
-				} catch (DatabaseConnectionException | SQLException | InvalidInputException e) {
+				} catch (DatabaseConnectionException | SQLException | InvalidInputException | AdminNotFoundException e) {
 					System.out.println(e.getMessage());
 					break;
 				}
@@ -60,7 +81,7 @@ public class AdminController {
 					System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%-15s%s", a.getId(),
 							a.getFirstName(), a.getLastName(), a.getPhoneNumber(), a.getUserName(),
 							a.getPassword(),a.getRole(), a.getJoinDate().toString()));
-				} catch (SQLException | DatabaseConnectionException | InvalidInputException e) {
+				} catch (SQLException | DatabaseConnectionException | InvalidInputException | AdminNotFoundException e) {
 					System.out.println(e.getMessage());
 					break;
 				}
@@ -89,7 +110,7 @@ public class AdminController {
 				String newVal=sc.next();
 				adminService.updateAdmin(id,field,newVal);
 				System.out.println("Record updated Successfully");
-			} catch (SQLException e) {
+			} catch (SQLException | DatabaseConnectionException | InvalidInputException | AdminNotFoundException e) {
 				System.out.println(e.getMessage());
 			}
 			break;
@@ -130,6 +151,15 @@ public class AdminController {
 			}
 			
 	}
+		}
 }
+        else if(adminOption==0)
+        	break;
+        else {
+        	throw new InvalidInputException("Enter a Valid Option");
+        }
+        	
+        
+	}
 	}
 }
