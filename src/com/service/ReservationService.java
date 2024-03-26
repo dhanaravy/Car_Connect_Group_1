@@ -118,6 +118,16 @@ public class ReservationService {
 	    throw new ReservationException("Sorry!! Reservation id is not found to delete it");
 		
 	}
+	
+	public void updateVehicleAvailabilityAdd(List<Reservation> list, int id) throws SQLException, DatabaseConnectionException {
+		for(Reservation r:list) {
+			if(r.getId()==id) {
+				int vId=r.getVehicleId();
+				reservationDao.updateVehicleAvailabilityAdd(vId);
+			}
+		}
+		
+	}
 
 	 
 

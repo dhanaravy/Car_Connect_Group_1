@@ -112,6 +112,14 @@ public class ReservationController {
 			case 4:
 				try {
 					List<Reservation> list = reservationService.fetchAllReservation();
+					System.out.println(String.format("%-15s%-15s%-15s%-15s%-15s%-15s%s", "Reservation Id",
+							"Customer Id", "Vehicle Id", "Start Date", "End Date", "Total Cost", "Status"));
+					for(Reservation r:list) {
+						System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%s", r.getId(),
+								r.getCustomerId(), r.getVehicleId(), r.getStartDate().toString(), r.getEndDate().toString(), r.getTotalCost(),
+								r.getStatus()));
+					}
+					System.out.println("");
 					System.out.println("Enter Reservation Id to be updated:");
 					int id = sc.nextInt();
 					System.out.println();
@@ -133,11 +141,20 @@ public class ReservationController {
 				}
 				break;
 			case 5:
-				System.out.println("Enter Reservation Id to be deleted");
-				int id = sc.nextInt();
 				try {
 					List<Reservation> list = reservationService.fetchAllReservation();
+					System.out.println(String.format("%-15s%-15s%-15s%-15s%-15s%-15s%s", "Reservation Id",
+							"Customer Id", "Vehicle Id", "Start Date", "End Date", "Total Cost", "Status"));
+					for(Reservation r:list) {
+						System.out.println(String.format("%-15d%-15s%-15s%-15s%-15s%-15s%s", r.getId(),
+								r.getCustomerId(), r.getVehicleId(), r.getStartDate().toString(), r.getEndDate().toString(), r.getTotalCost(),
+								r.getStatus()));
+					}
+					System.out.println("");
+					System.out.println("Enter Reservation Id to be deleted");
+					int id = sc.nextInt();
 					boolean check=reservationService.validateReservationId(list,id);
+					reservationService.updateVehicleAvailabilityAdd(list,id);
 					if(check==true)
 						reservationService.deleteReservationById(id);	   
 					System.out.println("Records Deleted!!");
