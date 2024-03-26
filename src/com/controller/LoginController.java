@@ -115,9 +115,9 @@ public class LoginController {
 						System.out.println("Logging In....");
 						System.out.println("Welcome "+loginDto.getFirstName()+" "+loginDto.getLastName());
 						if(loginDto.getRole().equals("customer"))
-							CustomerController.main(args);
+							ReservationController.main(args,sc);
 						else
-							AdminController.main(args);
+							AdminController.main(args,sc);
 					}
 					else
 						throw new InvalidCredentialsException("Invalid Credentials!");

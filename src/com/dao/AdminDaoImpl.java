@@ -73,15 +73,15 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void updateAdmin(int id, String fieldd, String newVal) throws SQLException, DatabaseConnectionException {
+	public void updateAdmin(int id, String fieldd, double newVal) throws SQLException, DatabaseConnectionException {
 		Connection conn = DBUtil.getDbConn();
 
-		String sql = "update admin set "+fieldd+"=? where id=?";
+		String sql = "update admin set "+field+"=? where id=?";
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		if(fieldd.equals("join_date")) {
-			LocalDate local=LocalDate.parse(newVal);
+		if(fieldd.equals("balance")) {
+			double newBal=newVal;
 			java.sql.Date sqlDate = java.sql.Date.valueOf(local);
              pstmt.setDate(1, sqlDate);
 		}
