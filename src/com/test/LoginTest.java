@@ -11,7 +11,9 @@ import com.dao.AdminDao;
 import com.dao.AdminDaoImpl;
 import com.dao.CustomerDao;
 import com.dao.CustomerDaoImpl;
+import com.dto.LoginDto;
 import com.exception.DatabaseConnectionException;
+import com.exception.InvalidCredentialsException;
 import com.model.Admin;
 import com.model.Customer;
 import com.service.LoginService;
@@ -24,35 +26,41 @@ public class LoginTest {
 	LoginService loginService = new LoginService();
 	
 	Scanner sc = new Scanner(System.in);
+	
 	@Test
-	public  void fetchAllAdmin() {
-		
-		
-	}
+	
 	public void checkAdminUsername() {
-		List<Admin> list;
-		try {
-			list = loginService.fetchAllAdmin();
-			String username="raj";
-			Assert.assertEquals(false, loginService.checkAdminUsername(list, username));
-			
-		} catch (SQLException | DatabaseConnectionException e) {
-			Assert.assertEquals("unable to establish a connection to the database :(",e.getMessage());
-			e.printStackTrace();
-		}
+	    List<Admin> list;
+	    try {
+	        list = loginService.fetchAllAdmin();
+	        String validUsername = "jermy123";
+	        Assert.assertTrue(loginService.checkAdminUsername(list, validUsername));
+	        
+	        String invalidUsername = "jermy"; // wrong input
+	        Assert.assertFalse(loginService.checkAdminUsername(list, invalidUsername));
+	        
+	    } catch (SQLException | DatabaseConnectionException e) {
+	        Assert.assertEquals("unable to establish a connection to the database :(", e.getMessage());
+	        e.printStackTrace();
+	    }
+	}
+
 		
 	
 		
-	}
-	public void fetchAllCustomer() {
-		
-	}
+	
+	
+	@Test
 	public void checkCustomerUsername() {
 		List<Customer> list;
 		try {
 			list=loginService.fetchAllCustomer();
-			String username="ram";
-			Assert.assertEquals(true, loginService.checkCustomerUsername(list, username));
+			
+			String username="sandiyav";
+			Assert.assertTrue(loginService.checkCustomerUsername(list, username));
+			
+			
+	
 			
 		} catch (SQLException e) {
 			
@@ -63,17 +71,28 @@ public class LoginTest {
 		}
 		
 	}
+	@Test
 	public void loginCheck() throws SQLException, DatabaseConnectionException {
 		List<Customer> list;
-		
+		try {
 		list=loginService.fetchAllCustomer();
 		List<Admin> list1;
 		list1 = loginService.fetchAllAdmin();
+		int id=sc.nextInt();
+		String firstName="Jermy";
+		String lastName="Gilbert";
 		
-		String firstname="ram";
-		String lastname="prasad";
-		String username="ramprasad";
-		String password="ram123";
+		
+		String username="jermy123";
+		String password="415263";
+		String role="admin";
+		LoginDto loginDto = new LoginDto(id,firstName,lastName,username,password,role);
+		
+			Assert.assertEquals(loginDto,loginService.loginCheck(list1, list, username));
+		} catch (InvalidCredentialsException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 }

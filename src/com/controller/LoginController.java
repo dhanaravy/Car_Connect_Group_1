@@ -119,8 +119,11 @@ public class LoginController {
 						if(loginDto.getRole().equals("customer"))
 							ReservationController.main(args,sc);
 						else
-							AdminController.main(args,sc);
-					}
+							
+								AdminController.main(args,sc);
+							
+							}
+					
 					else
 						throw new InvalidCredentialsException("Invalid Credentials!");
 				} catch (SQLException | DatabaseConnectionException | InvalidCredentialsException e) {
