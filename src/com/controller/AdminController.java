@@ -147,7 +147,7 @@ public class AdminController {
 			                r.getTotalCost(), r.getStatus()));
 			    }
 			} catch (Exception e) {
-			    e.printStackTrace(); 
+			    System.out.println(e.getMessage());
 			}
 			
 	}
