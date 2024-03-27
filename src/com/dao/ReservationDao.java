@@ -26,7 +26,7 @@ public interface ReservationDao {
 	
 	void updateVehicleAvailability(int vehicleId, int i) throws SQLException, DatabaseConnectionException;
 
-
+	void updateVehicleAvailabilityAdd(int vId) throws SQLException, DatabaseConnectionException;
 
 	 
 

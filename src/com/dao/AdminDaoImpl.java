@@ -80,10 +80,12 @@ public class AdminDaoImpl implements AdminDao {
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		if(fieldd.equals("role")) {
-			String newBal=newVal;
+		if(fieldd.equals("join_date")) {
 		
-             pstmt.setString(1,newVal);
+             pstmt.setDate(1,Date.valueOf(newVal));
+		}
+		else {
+			pstmt.setString(1, newVal);
 		}
 		
 		pstmt.setInt(2, id);

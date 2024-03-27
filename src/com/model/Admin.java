@@ -1,6 +1,7 @@
 package com.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Admin {
 	private int id;
@@ -86,6 +87,24 @@ public class Admin {
 		return "Admin [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", phoneNumber=" + phoneNumber + ", userName=" + userName + ", password=" + password + ", role="
 				+ role + ", joinDate=" + joinDate + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, id, joinDate, lastName, password, phoneNumber, role, userName);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Admin other = (Admin) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(joinDate, other.joinDate) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(password, other.password) && Objects.equals(phoneNumber, other.phoneNumber)
+				&& Objects.equals(role, other.role) && Objects.equals(userName, other.userName);
 	}
 	
 	
